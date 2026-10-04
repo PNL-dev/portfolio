@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 480px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background: #f7f8fa;
+            color: #1b2430;
+        }
+        .add-row { display: flex; gap: 0.5rem; }
+        input[type="text"] {
+            flex: 1;
+            padding: 0.6rem;
+            font-size: 1rem;
+            border: 1px solid #c9d0db;
+            border-radius: 6px;
+        }
+        button {
+            padding: 0.6rem 1rem;
+            font-size: 1rem;
+            border: 0;
+            border-radius: 6px;
+            background: #2563eb;
+            color: #fff;
+            cursor: pointer;
+        }
+        ul { list-style: none; padding: 0; }
+        li {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #dde2ea;
+        }
+        li span { flex: 1; }
+        li.done span { text-decoration: line-through; color: #8a94a3; }
+        li button { background: #dc2626; padding: 0.3rem 0.7rem; font-size: 0.9rem; }
+        #error { color: #dc2626; min-height: 1.4rem; }
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+
+    <div class="add-row">
+        <input type="text" id="taskInput" placeholder="New task">
+        <button id="addBtn">Add</button>
+    </div>
+    <p id="error"></p>
+
+    <ul id="taskList"></ul>
+
+    <script>
+        // 1. N'jibou el 3anasser mel HTML
+        const taskInput = document.getElementById("taskInput");
+        const addBtn = document.getElementById("addBtn");
+        const taskList = document.getElementById("taskList");
+        const error = document.getElementById("error");
+
+        // 2. Fonction elli tzid task
+        function addTask() {
+            const text = taskInput.value.trim();
+
+            // Ken el input fer8, matzidch 7aja
+            if (text === "") {
+                error.textContent = "Write a task first.";
+                return;
+            }
+            error.textContent = "";
+
+            // Nsan3ou <li> jdid
+            const li = document.createElement("li");
+
+            // Checkbox: ki tdhghat 3lih, task tetchatb
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.addEventListener("change", function () {
+                li.classList.toggle("done");
+            });
+
+            // Text mta3 task
+            const span = document.createElement("span");
+            span.textContent = text;
+
+            // Bouton Delete: yfassakh el task
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.addEventListener("click", function () {
+                li.remove();
+            });
+
+            // Nrakbou el 3anasser fil <li>, w el <li> fil liste
+            li.append(checkbox, span, deleteBtn);
+            taskList.appendChild(li);
+
+            // Nfarrghou el input w nraj3ou el curseur lih
+            taskInput.value = "";
+            taskInput.focus();
+        }
+
+        // 3. Nrabtou el bouton w el touche Enter b fonction
+        addBtn.addEventListener("click", addTask);
+        taskInput.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                addTask();
+            }
+        });
+    </script>
+</body>
+</html>
