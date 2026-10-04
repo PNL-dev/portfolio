@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Belle vue, restaurant in Jendouba. Menu, opening hours and contact.">
+    <title>Belle vue | Restaurant in Jendouba</title>
+    <style>
+        :root {
+            --blue: #1f4e8c;
+            --blue-dark: #14325a;
+            --red: #b3261e;
+            --bg: #ffffff;
+            --soft: #eef3fa;
+            --text: #1b2430;
+            --muted: #5b6676;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            padding: 1rem 1.25rem;
+            background: var(--blue-dark);
+        }
+        nav strong { color: #fff; font-size: 1.2rem; }
+        nav div { display: flex; gap: 1.25rem; }
+        nav a { color: #dbe6f5; text-decoration: none; }
+        nav a:hover { color: #fff; }
+
+        /* Hero */
+        .hero {
+            background: var(--blue);
+            color: #fff;
+            text-align: center;
+            padding: 4.5rem 1.25rem;
+        }
+        .hero h1 { margin: 0; font-size: clamp(2.4rem, 8vw, 4rem); }
+        .hero p { margin: 1rem auto 2rem; max-width: 34ch; font-size: 1.15rem; color: #dbe6f5; }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.6rem;
+            background: var(--red);
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        .btn:hover { background: #8f1d17; }
+
+        /* Sections */
+        section { max-width: 760px; margin: 0 auto; padding: 3rem 1.25rem; }
+        h2 { margin: 0 0 1.25rem; font-size: 1.8rem; color: var(--blue-dark); }
+
+        /* Menu */
+        .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .filters button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: 1px solid var(--blue);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--blue);
+            cursor: pointer;
+        }
+        .filters button.active { background: var(--blue); color: #fff; }
+        .dish {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #dde2ea;
+        }
+        .dish h3 { margin: 0; font-size: 1.1rem; }
+        .dish p { margin: 0.2rem 0 0; color: var(--muted); font-size: 0.95rem; }
+        .price { font-weight: 700; color: var(--red); white-space: nowrap; }
+
+        /* Info */
+        .info { background: var(--soft); max-width: none; }
+        .info-inner { max-width: 760px; margin: 0 auto; }
+        .info-inner > div { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid #cfdaea; }
+
+        footer { text-align: center; padding: 2rem 1.25rem; background: var(--blue-dark); color: #dbe6f5; }
+        footer a { color: #fff; }
+
+        a:focus-visible, button:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <strong>Belle vue </strong>
+        <div>
+            <a href="#menu">Menu</a>
+            <a href="#hours">Hours</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Belle vue</h1>
+        <p>Fresh Tunisian food in the heart of Jendouba.</p>
+        <a class="btn" href="https://wa.me/21600000000">Order on WhatsApp</a>
+    </header>
+
+    <main>
+        <section id="menu">
+            <h2>Menu</h2>
+            <div class="filters" id="filters"></div>
+            <div id="menuList"></div>
+        </section>
+
+        <section class="info" id="hours">
+            <div class="info-inner">
+                <h2>Opening hours</h2>
+                <div><span>Monday to Friday</span><span>10:00 - 23:00</span></div>
+                <div><span>Saturday and Sunday</span><span>10:00 - 00:00</span></div>
+                <p style="margin-top:1rem">Boulevard de l'Environnement, Jendouba, Tunisia</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Book a table or order for pickup:</p>
+            <a class="btn" href="https://wa.me/21600000000">Message us on WhatsApp</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Belle vue. Website by <a href="index.html">Bilel Sedghiani</a></p>
+    </footer>
+
+    <script>
+        // 1. El menu: kol plat howa objet (badel-hom b plats mta3ek)
+        const dishes = [
+            { name: "Brik à l'oeuf", desc: "Crispy pastry, egg, tuna and parsley.", price: 4, category: "Starters" },
+            { name: "Salade Mechouia", desc: "Grilled peppers and tomatoes, olive oil.", price: 6, category: "Starters" },
+            { name: "Couscous with lamb", desc: "Semolina, lamb, vegetables and chickpeas.", price: 18, category: "Mains" },
+            { name: "Ojja merguez", desc: "Spicy tomato sauce, eggs and merguez.", price: 12, category: "Mains" },
+            { name: "Lablabi", desc: "Chickpea soup with bread, cumin and harissa.", price: 7, category: "Mains" },
+            { name: "Makloub", desc: "Folded flatbread with grilled chicken, fries, salad, cheese and harissa.", price: 9, category: "Mains" },
+            { name: "Libanais", desc: "Thin wrap with sliced chicken, garlic sauce, pickles and fries.", price: 9, category: "Mains" },
+            { name: "Poulet frit et frites", desc: "Crispy fried chicken with fries, salad and harissa.", price: 12, category: "Mains" },
+            { name: "Escalope et frites", desc: "Breaded chicken escalope, fries, salad and lemon.", price: 11, category: "Mains" },
+            { name: "Frites", desc: "Crispy golden fries with harissa mayo.", price: 3.5, category: "Starters" },
+            { name: "Fresh lemonade", desc: "Lemon, mint and a little sugar.", price: 4, category: "Drinks" },
+            { name: "Makroudh", desc: "Semolina pastry filled with dates.", price: 3.5, category: "Desserts" },
+            { name: "Espresso", desc: "Strong, freshly brewed coffee.", price: 3.5, category: "Drinks" },
+            { name: "Water", desc: "Mineral water, 1.5 L.", price: 4, category: "Drinks" },
+            { name: "Coca-Cola", desc: "Soft drink, 0.5 L.", price: 4, category: "Drinks" },
+            
+        ];
+
+        const categories = ["All", "Starters", "Mains", "Desserts", "Drinks"];
+        const filters = document.getElementById("filters");
+        const menuList = document.getElementById("menuList");
+
+        // 2. Nrasmou el plats (fonction te5ou el catégorie)
+        function showMenu(category) {
+            menuList.innerHTML = "";
+            dishes.forEach(function (dish) {
+                if (category === "All" || dish.category === category) {
+                    const row = document.createElement("div");
+                    row.className = "dish";
+
+                    const info = document.createElement("div");
+                    const title = document.createElement("h3");
+                    title.textContent = dish.name;
+                    const desc = document.createElement("p");
+                    desc.textContent = dish.desc;
+                    info.append(title, desc);
+
+                    const price = document.createElement("span");
+                    price.className = "price";
+                    price.textContent = dish.price.toFixed(2) + " TND";
+
+                    row.append(info, price);
+                    menuList.appendChild(row);
+                }
+            });
+        }
+
+        // 3. Nsan3ou el boutons mta3 el filtre
+        categories.forEach(function (category) {
+            const btn = document.createElement("button");
+            btn.textContent = category;
+            if (category === "All") btn.classList.add("active");
+
+            btn.addEventListener("click", function () {
+                document.querySelectorAll(".filters button").forEach(function (b) {
+                    b.classList.remove("active");
+                });
+                btn.classList.add("active");
+                showMenu(category);
+            });
+
+            filters.appendChild(btn);
+        });
+
+        // 4. Awel marra, nwarriw kol el plats
+        showMenu("All");
+    </script>
+</body>
+</html>
