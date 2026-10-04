@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Pumpito GYM in Le Kef. Coaches, flexible hours and simple memberships.">
+    <title>Pumpito GYM | Gym in Le Kef</title>
+    <style>
+        :root {
+            --ink: #0e0e0e;
+            --paper: #ececec;
+            --green: #22b04b;
+            --white: #ffffff;
+            --muted: #5d6169;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: "Arial Narrow", Arial, system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--ink);
+            background: var(--paper);
+        }
+        section { max-width: 920px; margin: 0 auto; padding: 3.5rem 1.25rem; }
+        h2 { margin: 0 0 1.5rem; font-size: 2rem; }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 1.8rem;
+            background: var(--green);
+            color: var(--ink);
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            border: 0;
+            cursor: pointer;
+        }
+        .btn:hover { background: #3ccb63; }
+
+        /* Hero */
+        .hero { background: var(--ink); color: var(--white); }
+        .hero-inner { max-width: 920px; margin: 0 auto; padding: 5rem 1.25rem; border-left: 12px solid var(--green); padding-left: 1.5rem; }
+        .hero h1 { margin: 0 0 1rem; font-size: clamp(2.6rem, 10vw, 5.5rem); line-height: 1; text-transform: uppercase; }
+        .hero p { margin: 0 0 2rem; max-width: 36ch; font-size: 1.2rem; color: #c9ccd1; }
+
+        /* Benefits */
+        .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
+        .benefits h3 { margin: 0 0 0.4rem; font-size: 1.25rem; border-bottom: 4px solid var(--green); display: inline-block; }
+        .benefits p { margin: 0.5rem 0 0; color: var(--muted); }
+
+        /* Plans */
+        .plans-bg { background: var(--white); }
+        .toggle { display: flex; gap: 0; margin-bottom: 1.5rem; }
+        .toggle button {
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            border: 2px solid var(--ink);
+            background: var(--white);
+            color: var(--ink);
+            cursor: pointer;
+        }
+        .toggle button.active { background: var(--ink); color: var(--white); }
+        .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+        .plan { border: 2px solid var(--ink); padding: 1.5rem; }
+        .plan.featured { background: var(--green); }
+        .plan h3 { margin: 0; font-size: 1.3rem; }
+        .plan .price { font-size: 2.4rem; font-weight: 700; margin: 0.5rem 0; }
+        .plan .price small { font-size: 1rem; font-weight: 400; }
+        .plan ul { padding-left: 1.1rem; margin: 0; }
+
+        /* Testimonials */
+        .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        blockquote { margin: 0; padding-left: 1rem; border-left: 4px solid var(--ink); }
+        blockquote footer { margin-top: 0.5rem; color: var(--muted); }
+
+        /* Contact */
+        .contact { background: var(--ink); color: var(--white); text-align: center; max-width: none; }
+        .contact p { margin: 0 0 1.5rem; color: #c9ccd1; }
+
+        a:focus-visible, button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+        .hero a:focus-visible, .contact a:focus-visible { outline-color: var(--white); }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-inner">
+            <h1>Pumpito GYM</h1>
+            <p>Train with real coaches in Le Kef, at hours that fit your day. No contracts.</p>
+            <a class="btn" href="https://wa.me/21600000000">Join now on WhatsApp</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="why">
+            <h2>Why train here</h2>
+            <div class="benefits">
+                <div>
+                    <h3>Certified coaches</h3>
+                    <p>Every member gets a starter plan and a form check in the first week.</p>
+                </div>
+                <div>
+                    <h3>Open 6:00 to 23:00</h3>
+                    <p>Train before work, after class, or late at night. Seven days a week.</p>
+                </div>
+                <div>
+                    <h3>No contract</h3>
+                    <p>Pay month by month, or save with a yearly plan. Cancel any time.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="plans-bg">
+            <section id="plans">
+                <h2>Memberships</h2>
+                <div class="toggle">
+                    <button id="monthlyBtn" class="active">Monthly</button>
+                    <button id="yearlyBtn">Yearly</button>
+                </div>
+                <div class="plans">
+                    <div class="plan">
+                        <h3>Basic</h3>
+                        <div class="price"><span class="amount" data-monthly="40" data-yearly="400">50</span> TND<small class="period"> / month</small></div>
+                        <ul><li>Gym floor access</li><li>Locker room</li></ul>
+                    </div>
+                    <div class="plan featured">
+                        <h3>Plus</h3>
+                        <div class="price"><span class="amount" data-monthly="60" data-yearly="620">80</span> TND<small class="period"> / month</small></div>
+                        <ul><li>Everything in Basic</li><li>Group classes</li><li>Starter plan</li></ul>
+                    </div>
+                    <div class="plan">
+                        <h3>Coach</h3>
+                        <div class="price"><span class="amount" data-monthly="120" data-yearly="980">120</span> TND<small class="period"> / month</small></div>
+                        <ul><li>Everything in Plus</li><li>4 personal sessions</li><li>Nutrition advice</li></ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section id="reviews">
+            <h2>Members say</h2>
+            <div class="quotes">
+                <blockquote>
+                    <p>I came in not knowing any exercise. The coach built me a plan in my first week.</p>
+                    <footer>Amine, member since 2025</footer>
+                </blockquote>
+                <blockquote>
+                    <p>Open late, so I can train after my classes. Clean and never too crowded.</p>
+                    <footer>Sarra, student</footer>
+                </blockquote>
+            </div>
+        </section>
+    </main>
+
+    <section class="contact" id="contact">
+        <h2>Start this week</h2>
+        <p>Message us and we will book your free first session.<br>Pumpito GYM, Le Kef, Tunisia</p>
+        <a class="btn" href="https://wa.me/21600000000">Message us on WhatsApp</a>
+    </section>
+
+    <script>
+        // 1. N'jibou el 3anasser
+        const monthlyBtn = document.getElementById("monthlyBtn");
+        const yearlyBtn = document.getElementById("yearlyBtn");
+        const amounts = document.querySelectorAll(".amount");
+        const periods = document.querySelectorAll(".period");
+
+        // 2. Fonction: tbaddel el prix 7asb "monthly" wala "yearly"
+        function setBilling(mode) {
+            amounts.forEach(function (el) {
+                el.textContent = el.dataset[mode];
+            });
+            periods.forEach(function (el) {
+                el.textContent = mode === "monthly" ? " / month" : " / year";
+            });
+            monthlyBtn.classList.toggle("active", mode === "monthly");
+            yearlyBtn.classList.toggle("active", mode === "yearly");
+        }
+
+        // 3. Nrabtou el boutons
+        monthlyBtn.addEventListener("click", function () { setBilling("monthly"); });
+        yearlyBtn.addEventListener("click", function () { setBilling("yearly"); });
+    </script>
+</body>
+</html>
